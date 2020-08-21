@@ -29,7 +29,6 @@ RSpec.describe User, type: :model do
   #   end
   # end
   context "Validations" do
-    subject { described_class.new(name: "Ben", age: 20, favourite_mums_dish: "spaghetti") }
     it "is valid with valid attributes" do
       expect(subject).to be_valid
     end
@@ -39,12 +38,12 @@ RSpec.describe User, type: :model do
       expect(user).to_not be_valid
     end
 
-    it "is valid with valid attributes" do
+    it "is not valid without an age" do
       age = User.new(age: nil)
       expect(age).to_not be_valid
     end
 
-    it "is not valid without a title" do
+    it "is not valid without a mums's favourite dish" do
       mums_dish = User.new(favourite_mums_dish: nil)
       expect(mums_dish).to_not be_valid
     end
