@@ -15,9 +15,9 @@ RSpec.describe User, type: :model do
     expect(subject.age).to eq(20)
   end
 
-  describe "Associations" do
-    it { should belongs_to(:userrecipes).without_validating_presence }
-  end
+  # describe "Associations" do
+  #   it { should belongs_to(:userrecipes).without_validating_presence }
+  # end
 
   # context "validations" do
   #   before { FactoryBot.build(:user) }
@@ -29,13 +29,24 @@ RSpec.describe User, type: :model do
   #   end
   # end
   context "Validations" do
+    subject { described_class.new(name: "Ben", age: 20, favourite_mums_dish: "spaghetti") }
     it "is valid with valid attributes" do
-      expect(User.new).to be_valid
+      expect(subject).to be_valid
     end
 
     it "is not valid without a name" do
       user = User.new(name: nil)
       expect(user).to_not be_valid
+    end
+
+    it "is valid with valid attributes" do
+      age = User.new(age: nil)
+      expect(age).to_not be_valid
+    end
+
+    it "is not valid without a title" do
+      mums_dish = User.new(favourite_mums_dish: nil)
+      expect(mums_dish).to_not be_valid
     end
   end
 end
