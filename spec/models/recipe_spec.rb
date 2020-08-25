@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Recipe, type: :model do
-  subject { described_class.new(name: "spaghetti", difficulty: "easy", cooking_time: 100) }
+  subject { described_class.new(name: "spaghetti", difficulty: "easy", cooking_time: 100, instructions: "long string") }
   context "Validations" do
     it "is valid with valid attributes" do
       expect(subject).to be_valid
@@ -19,6 +19,11 @@ RSpec.describe Recipe, type: :model do
 
     it "is not valid without a cooking time" do
       recipe = Recipe.new(cooking_time: nil)
+      expect(recipe).to_not be_valid
+    end
+
+    it "is not valid without an instructions" do
+      recipe = Recipe.new(instructions: nil)
       expect(recipe).to_not be_valid
     end
   end
