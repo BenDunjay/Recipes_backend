@@ -21,15 +21,6 @@ RSpec.describe User, type: :model do
   #   it { should belongs_to(:userrecipes).without_validating_presence }
   # end
 
-  # context "validations" do
-  #   before { FactoryBot.build(:user) }
-
-  #   it "checks for same username" do
-  #     should validate_uniqueness_of(:username).
-  #              scoped_to(:account_id).
-  #              case_insensitive
-  #   end
-  # end
   context "Validations" do
     it "is valid with valid attributes" do
       expect(subject).to be_valid
