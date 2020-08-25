@@ -17,10 +17,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # describe "Associations" do
-  #   it { should belongs_to(:userrecipes).without_validating_presence }
-  # end
-
   context "Validations" do
     it "is valid with valid attributes" do
       expect(subject).to be_valid
