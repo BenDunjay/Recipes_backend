@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  subject { described_class.new(name: "Ben", age: 20, favourite_mums_dish: "Spaghetti") }
+  subject { described_class.new(name: "Ben", username: "test", password: "123", age: 20, favourite_mums_dish: "Spaghetti") }
 
   context "initiates a new user" do
     it " with a name" do
@@ -14,6 +14,10 @@ RSpec.describe User, type: :model do
 
     it " with an age" do
       expect(subject.age).to eq(20)
+    end
+
+    it "with a username" do
+      expect(subject.username).to eq("test")
     end
   end
 
@@ -36,5 +40,7 @@ RSpec.describe User, type: :model do
       mums_dish = User.new(favourite_mums_dish: nil)
       expect(mums_dish).to_not be_valid
     end
+
+    it { is_expected.to validate_uniqueness_of :username }
   end
 end
