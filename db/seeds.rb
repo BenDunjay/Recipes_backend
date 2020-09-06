@@ -10,11 +10,11 @@ User.delete_all
 Recipe.delete_all
 UserRecipe.delete_all
 
-user_1 = User.create(name: "person_1", age: 20, favourite_mums_dish: "mum_1")
-user_2 = User.create(name: "person_2", age: 21, favourite_mums_dish: "mum_2")
-user_3 = User.create(name: "person_3", age: 22, favourite_mums_dish: "mum_3")
-user_4 = User.create(name: "person_4", age: 23, favourite_mums_dish: "mum_4")
-user_5 = User.create(name: "person_5", age: 24, favourite_mums_dish: "mum_5")
+user_1 = User.create(name: "person_1", age: 20, favourite_mums_dish: "mum_1", username: "username_1", password: "123")
+user_2 = User.create(name: "person_2", age: 21, favourite_mums_dish: "mum_2", username: "username_2", password: "123")
+user_3 = User.create(name: "person_3", age: 22, favourite_mums_dish: "mum_3", username: "username_3", password: "123")
+user_4 = User.create(name: "person_4", age: 23, favourite_mums_dish: "mum_4", username: "username_4", password: "123")
+user_5 = User.create(name: "person_5", age: 24, favourite_mums_dish: "mum_5", username: "username_5", password: "123")
 
 recipe_1 = Recipe.create(name: "recipe_1", difficulty: "difficulty_1", cooking_time: 1, instructions: "long string 1")
 recipe_2 = Recipe.create(name: "recipe_2", difficulty: "difficulty_2", cooking_time: 2, instructions: "long string 2")

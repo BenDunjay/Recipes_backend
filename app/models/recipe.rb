@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   has_many :users
-  has_many :users, through: :userrecipes
+  has_many :users, through: :user_recipes
 
   validates_presence_of :name
   validates_presence_of :difficulty
