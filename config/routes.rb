@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :users
+      resources :users, only: [:create]
       resources :recipes
       resources :user_recipes
+      post "/login", to: "auth#login"
     end
   end
 end

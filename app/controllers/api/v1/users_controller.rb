@@ -7,7 +7,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
+    byebug
     user = User.create(user_params)
+    byebug
     if user.valid?
       render json: user, serializer: UserSerializer, status: :created
     else
@@ -18,6 +20,6 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :name, :mums_favourite_dish, :age)
+    params.require(:user).permit(:username, :password, :name, :favourite_mums_dish, :age)
   end
 end
