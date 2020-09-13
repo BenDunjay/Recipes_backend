@@ -7,9 +7,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    byebug
     user = User.create(user_params)
-    byebug
     if user.valid?
       render json: user, serializer: UserSerializer, status: :created
     else
