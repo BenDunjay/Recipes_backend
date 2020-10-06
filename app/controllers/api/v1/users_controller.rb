@@ -6,6 +6,7 @@ class Api::V1::UsersController < ApplicationController
     render json: users, each_serializer: UserSerializer
   end
 
+  # works with postman - takes the strong params and passes it through the user serializer if valid.
   def create
     user = User.create(user_params)
     if user.valid?
@@ -13,6 +14,12 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { error: "failed to create user" }, status: :not_acceptable
     end
+  end
+
+  def update
+    user = logged_in_user
+    user.update(user_params)
+    render json: user, serializer: UserSerializer, status: :OK
   end
 
   private
