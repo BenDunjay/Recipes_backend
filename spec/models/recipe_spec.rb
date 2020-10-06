@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Recipe, type: :model do
-  subject { described_class.new(name: "spaghetti", difficulty: "easy", cooking_time: 100, instructions: "long string") }
+  let(:owner) { instance_double(User, id: 1, name: "Ben", username: "test", password: "123", age: 20, favourite_mums_dish: "Spaghetti") }
+  subject { described_class.new(name: "spaghetti", difficulty: "easy", cooking_time: 100, instructions: "long string", user_id: owner.id) }
   context "Validations" do
     it "is valid with valid attributes" do
       expect(subject).to be_valid
@@ -26,5 +27,9 @@ RSpec.describe Recipe, type: :model do
       recipe = Recipe.new(instructions: nil)
       expect(recipe).to_not be_valid
     end
+  end
+
+  describe "Associations:" do
+    it { should belong_to(:user).without_validating_presence }
   end
 end

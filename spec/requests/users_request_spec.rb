@@ -16,7 +16,7 @@ RSpec.describe "Users", type: :request do
     it "creates a new user" do
       # expect { post "/api/v1/users", params: user }.to change(User, :count).by(1)
       expect(post "/api/v1/users", params: user).to change(User, :count).by(1)
-      # expect(response).to have_http_status :created
+      expect(response).to have_http_status :created
       # expect(response.headers['Location']).to eq api_v1_bathroom_url(Bathroom.last)
     end
   end

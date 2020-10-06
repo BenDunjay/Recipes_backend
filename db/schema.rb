@@ -19,18 +19,11 @@ ActiveRecord::Schema.define(version: 2020_09_03_172301) do
     t.string "name"
     t.string "difficulty"
     t.integer "cooking_time"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "instructions"
-  end
-
-  create_table "user_recipes", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "recipe_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["recipe_id"], name: "index_user_recipes_on_recipe_id"
-    t.index ["user_id"], name: "index_user_recipes_on_user_id"
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,6 +36,5 @@ ActiveRecord::Schema.define(version: 2020_09_03_172301) do
     t.string "password_digest"
   end
 
-  add_foreign_key "user_recipes", "recipes"
-  add_foreign_key "user_recipes", "users"
+  add_foreign_key "recipes", "users"
 end
