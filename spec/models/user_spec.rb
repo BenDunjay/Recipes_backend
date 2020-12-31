@@ -1,15 +1,15 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  subject { described_class.new(name: "Ben", username: "test", password: "123", age: 20, favourite_mums_dish: "Spaghetti") }
+  subject { create :user }
 
   context "initiates a new user" do
     it " with a name" do
-      expect(subject.name).to eq("Ben")
+      expect(subject.name).to eq("John Doe")
     end
 
     it " with a favourite mums's recipe" do
-      expect(subject.favourite_mums_dish).to eq("Spaghetti")
+      expect(subject.favourite_mums_dish).to eq("Spag bol")
     end
 
     it " with an age" do
