@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  subject { create :user }
+  subject { build :user }
 
   context "initiates a new user" do
     it " with a name" do
@@ -27,18 +27,18 @@ RSpec.describe User, type: :model do
     end
 
     it "is not valid without a name" do
-      user = User.new(name: nil)
-      expect(user).to_not be_valid
+      subject.name = nil
+      expect(subject.save).to eq(false)
     end
 
     it "is not valid without an age" do
-      age = User.new(age: nil)
-      expect(age).to_not be_valid
+      subject.age = nil
+      expect(subject.save).to eq(false)
     end
 
     it "is not valid without a mums's favourite dish" do
-      mums_dish = User.new(favourite_mums_dish: nil)
-      expect(mums_dish).to_not be_valid
+      subject.favourite_mums_dish = nil
+      expect(subject.save).to eq(false)
     end
 
     it { is_expected.to validate_uniqueness_of :username }
