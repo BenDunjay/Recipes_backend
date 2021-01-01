@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     end
 
     it "with a username" do
-      expect(subject.username).to eq("test")
+      expect(subject.username).to eq("test1")
     end
   end
 

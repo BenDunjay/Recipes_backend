@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create :user }
+  let(:user) { create :random_user }
 
   before do
     User.delete_all
