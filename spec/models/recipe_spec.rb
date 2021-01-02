@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Recipe, type: :model do
-  let(:owner) { create :user }
-  subject { create :recipe, user_id: owner.id }
+  subject { create :recipe }
   context "Validations" do
     it "is valid with valid attributes" do
       expect(subject).to be_valid

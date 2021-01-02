@@ -4,7 +4,6 @@ RSpec.describe "Users", type: :request do
   let(:user) { create :random_user }
 
   before do
-    User.delete_all
     user
   end
 

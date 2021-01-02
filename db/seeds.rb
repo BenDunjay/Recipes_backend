@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.delete_all
 Recipe.delete_all
+User.delete_all
 
 user_1 = User.create(name: "person_1", age: 20, favourite_mums_dish: "mum_1", username: "username_1", password: "123")
 user_2 = User.create(name: "person_2", age: 21, favourite_mums_dish: "mum_2", username: "username_2", password: "123")
