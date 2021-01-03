@@ -2,14 +2,21 @@ class Api::V1::RecipesController < ApplicationController
   skip_before_action :authorized, only: [:create]
 
   def index
-    if logged_in_user
-      recipes = Recipe.where("recipe.user_id EQUAL TO logged_in_user.id")
+    if params["user_id"]
+      user = User.find(params["user_id"])
+      byebug
+      recipes = user.recipes
       render json: recipes, each_serializer: RecipeSerializer
     else
       recipes = Recipe.all
       render json: recipes, each_serializer: RecipeSerializer
     end
   end
+
+  #   def user_recipes
+  #     recipes = logged_in_user.recipes
+  #     render json: recipes, each_serializer: RecipeSerializer
+  #   end
 
   def create
   end
