@@ -3,7 +3,10 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users, only: [:create, :index]
       resources :recipes
-      post "/login", to: "auth#login"
+
+      controller :auth do
+        post "/login" => "auth#login"
+      end
     end
   end
 end
