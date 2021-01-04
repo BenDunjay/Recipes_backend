@@ -1,18 +1,13 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create :random_user }
-
-  before do
-    user
-  end
+  subject { create :user }
 
   describe "index" do
     it "request list of all users" do
       get("/api/v1/users")
       expect(response).to be_successful
       expect(response).to have_http_status(:success)
-      expect(response.body).to include(user.name)
     end
   end
 
@@ -25,7 +20,7 @@ RSpec.describe "Users", type: :request do
     end
 
     it "changes the count of User by 1" do
-      expect(User.all.count).to eq(1)
+      expect { subject }.to change(User, :count).by(1)
     end
   end
 end
