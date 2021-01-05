@@ -4,10 +4,16 @@ RSpec.describe "Users", type: :request do
   subject { create :user }
 
   describe "index" do
+    before do
+      User.destroy_all
+      subject
+    end
+
     it "request list of all users" do
       get("/api/v1/users")
       expect(response).to be_successful
       expect(response).to have_http_status(:success)
+      expect(response.body).to include(subject.name)
     end
   end
 

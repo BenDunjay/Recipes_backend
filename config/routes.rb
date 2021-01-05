@@ -8,10 +8,6 @@ Rails.application.routes.draw do
         post "/login" => "auth#login"
       end
 
-      controller :recipes do
-        get "/user_recipes" => "recipes#user_recipes"
-      end
-
       resources :users do
         resources :recipes
       end
