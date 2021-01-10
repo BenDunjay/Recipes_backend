@@ -16,7 +16,8 @@ RSpec.describe "Recipes", type: :request do
 
   context "when logged in" do
     it "shows the current users recipes" do
-      get("/api/v1/users/:#{recipe.user.id}/recipes")
+      user
+      get("/api/v1/users/:#{user.id}/recipes")
       expect(response.body).to be_successful
     end
   end

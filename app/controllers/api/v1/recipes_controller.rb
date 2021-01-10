@@ -4,8 +4,7 @@ class Api::V1::RecipesController < ApplicationController
   def index
     if params["user_id"]
       user = User.find(params["user_id"])
-      byebug
-      recipes = user.recipes
+      recipes = user.recipes.order(id: :desc)
       render json: recipes, each_serializer: RecipeSerializer
     else
       recipes = Recipe.all
@@ -14,7 +13,6 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def create
-    byebug
     recipe = Recipe.create(recipe_params)
     if recipe.valid?
       render json: recipe, each_serializer: RecipeSerializer, status: :created
