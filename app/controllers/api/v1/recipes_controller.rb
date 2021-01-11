@@ -22,6 +22,8 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def show
+    recipe = Recipe.find(params[:id])
+    render json: recipe, each_serializer: RecipeSerializer
   end
 
   def update
