@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       end
 
       resources :users do
-        resources :recipes
+        controller :users_recipes do
+          get "/my_recipes" => "users_recipes#index"
+        end
       end
     end
   end

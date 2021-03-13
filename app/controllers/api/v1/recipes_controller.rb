@@ -2,14 +2,8 @@ class Api::V1::RecipesController < ApplicationController
   skip_before_action :authorized, only: [:create]
 
   def index
-    if params["user_id"]
-      user = User.find(params["user_id"])
-      recipes = user.recipes.order(id: :desc)
-      render json: recipes, each_serializer: RecipeSerializer
-    else
-      recipes = Recipe.all
-      render json: recipes, each_serializer: RecipeSerializer
-    end
+    recipes = Recipe.all
+    render json: recipes, each_serializer: RecipeSerializer
   end
 
   def create
