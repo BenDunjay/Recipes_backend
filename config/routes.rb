@@ -12,7 +12,7 @@ Rails.application.routes.draw do
         controller :users_recipes do
           get "/my_recipes" => "users_recipes#index"
           post "/create_recipe" => "users_recipes#create"
-          resources :users_recipes, only: [:show]
+          resources :users_recipes, only: [:show, :update]
         end
       end
     end

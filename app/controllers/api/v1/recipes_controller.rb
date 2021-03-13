@@ -6,15 +6,6 @@ class Api::V1::RecipesController < ApplicationController
     render json: recipes, each_serializer: RecipeSerializer
   end
 
-  # def create
-  #   recipe = Recipe.create(recipe_params)
-  #   if recipe.valid?
-  #     render json: recipe, each_serializer: RecipeSerializer, status: :created
-  #   else
-  #     render json: { error: "failed to create recipe" }, status: :not_acceptable
-  #   end
-  # end
-
   def show
     recipe = Recipe.find(params[:id])
     render json: recipe, each_serializer: RecipeSerializer

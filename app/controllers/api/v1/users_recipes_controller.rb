@@ -20,9 +20,16 @@ class Api::V1::UsersRecipesController < ApplicationController
     render json: recipe, each_serializer: RecipeSerializer
   end
 
+  def update
+    recipe = Recipe.find(params[:id])
+    byebug
+    recipe.update(params["recipe"])
+    render json: recipe, each_serializer: RecipeSerializer
+  end
+
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :difficulty, :cooking_time, :instructions, :user_id)
+    params.require(:recipe).permit(:name, :difficulty, :cooking_time, :instructions, :user_id, :id)
   end
 end
