@@ -42,4 +42,12 @@ RSpec.describe "UsersRecipes", type: :request do
       expect(recipe.difficulty).to eq("medium")
     end
   end
+
+  context "destroy" do
+    it "destroys the recipe" do
+      get("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
+      expect(response).to be_successful
+      expect(response).to have_http_status(:success)
+    end
+  end
 end
