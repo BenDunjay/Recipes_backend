@@ -11,4 +11,12 @@ RSpec.describe "UsersRecipes", type: :request do
       expect(response).to have_http_status :created
     end
   end
+
+  context "when logged in" do
+    # pending "cannot get the correct controller, error is, cannot find random_user id"
+    it "shows the current users recipes" do
+      get "/api/v1/users/#{user.id}/my_recipes"
+      expect(response).to be_successful
+    end
+  end
 end

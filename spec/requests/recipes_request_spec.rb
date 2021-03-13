@@ -14,15 +14,6 @@ RSpec.describe "Recipes", type: :request do
     end
   end
 
-  context "when logged in" do
-    pending "cannot get the correct controller, error is, cannot find random_user id"
-    # it "shows the current users recipes" do
-    #   user
-    #   get("/api/v1/users/:#{user.id}/recipes")
-    #   expect(response.body).to be_successful
-    # end
-  end
-
   # describe "create" do
   #   it "creates a new recipe" do
   #     recipe = { recipe: { name: "recipe_100", difficulty: "difficult", instructions: "Long instructions 100", cooking_time: 100, user_id: user.id } }
