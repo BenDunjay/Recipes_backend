@@ -15,6 +15,11 @@ class Api::V1::UsersRecipesController < ApplicationController
     end
   end
 
+  def show
+    recipe = Recipe.find(params[:id])
+    render json: recipe, each_serializer: RecipeSerializer
+  end
+
   private
 
   def recipe_params
