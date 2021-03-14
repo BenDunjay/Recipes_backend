@@ -1,4 +1,6 @@
 class Api::V1::UsersRecipesController < ApplicationController
+  before_action :authorized, only: [:create, :update, :destroy]
+
   def index
     user = User.find(params["user_id"])
     users_recipes = user.recipes
