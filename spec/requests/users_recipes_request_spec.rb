@@ -10,6 +10,7 @@ RSpec.describe "UsersRecipes", type: :request do
       post "/api/v1/users/#{user.id}/create_recipe", params: recipe.to_json, headers: { 'Accept': "application/json", 'Content-Type': "application/json" }
       body = JSON.parse(response.body)
       expect(response).to have_http_status :created
+      expect(body).to include("name" => "recipe_100")
     end
   end
 
@@ -20,7 +21,7 @@ RSpec.describe "UsersRecipes", type: :request do
     end
   end
 
-  context "show" do
+  context "GET #show" do
     it "shows the recipe" do
       get("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
       expect(response).to be_successful
@@ -29,23 +30,22 @@ RSpec.describe "UsersRecipes", type: :request do
     end
   end
 
-  context "update" do
-    before do
-      recipe.difficulty = "medium"
-    end
-
+  context "PUT #update" do
     it "update the recipe" do
-      get("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
+      new_recipe = { recipe: { name: recipe.name, difficulty: "medium", instructions: recipe.instructions, cooking_time: recipe.cooking_time, user_id: user.id } }
+
+      put "/api/v1/users/#{user.id}/users_recipes/#{recipe.id}", params: new_recipe.to_json, headers: { 'Accept': "application/json", 'Content-Type': "application/json" }
+      body = JSON.parse(response.body)
+
       expect(response).to be_successful
       expect(response).to have_http_status(:success)
-      expect(response.body).to include(recipe.name)
-      expect(recipe.difficulty).to eq("medium")
+      expect(body).to include("difficulty" => "medium")
     end
   end
 
-  context "destroy" do
+  context "DELETE #destroy" do
     it "destroys the recipe" do
-      get("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
+      delete("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
       expect(response).to be_successful
       expect(response).to have_http_status(:success)
     end

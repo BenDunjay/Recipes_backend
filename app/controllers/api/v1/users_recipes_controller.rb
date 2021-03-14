@@ -21,19 +21,18 @@ class Api::V1::UsersRecipesController < ApplicationController
   end
 
   def update
-    recipe = Recipe.find(params[:id])
     byebug
-    recipe.update(params["recipe"])
+    recipe = Recipe.find(params[:id])
+    recipe.update(recipe_params)
     render json: recipe, each_serializer: RecipeSerializer
   end
 
   def destroy
-    byebug
     if logged_in_user.id == params[:user_id].to_i
       all_recipes = logged_in_user.recipes
       recipe = all_recipes.find(params[:id])
       recipe.destroy
-      render json: recipe, serializer: RecipeSerializer
+      render json: all_recipes, serializer: RecipeSerializer
     else
       render json: { error: "Unfortunately this is not your recipe to delete" }, status: :not_acceptable
     end
