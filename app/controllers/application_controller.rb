@@ -9,7 +9,9 @@ class ApplicationController < ActionController::API
     request.headers["Authorization"]
   end
 
-  def encode_token(payload)
+  def encode_token(payload, exp = 24.hours.from_now)
+    payload[:exp] = exp.to_i
+    byebug
     JWT.encode(payload, @secret)
   end
 
