@@ -5,9 +5,9 @@
 
 Rails.application.configure do
   config.after_initialize do
-    Bullet.enable        = true
-    Bullet.bullet_logger = true
-    Bullet.raise         = true # raise an error if n+1 query occurs
+    # Bullet.enable = true
+    # Bullet.bullet_logger = true
+    # Bullet.raise = false # raise an error if n+1 query occurs
   end
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -23,11 +23,11 @@ Rails.application.configure do
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
-    'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+    "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
 
   # Show full error reports and disable caching.
-  config.consider_all_requests_local       = true
+  config.consider_all_requests_local = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
 
