@@ -45,11 +45,15 @@ RSpec.describe "UsersRecipes", type: :request do
     end
   end
 
-  #   context "DELETE #destroy" do
-  #     it "destroys the recipe" do
-  #       delete("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
-  #       expect(response).to be_successful
-  #       expect(response).to have_http_status(:success)
-  #     end
+  # context "DELETE #destroy" do
+  # before do
+  #   let(:logged_in_user){user}
+  # end
+
+  #   it "destroys the recipe" do
+  #     delete("/api/v1/users/#{user.id}/users_recipes/#{recipe.id}")
+  #     expect(response).to be_successful
+  #     expect(response).to have_http_status(:success)
   #   end
+  # end
 end

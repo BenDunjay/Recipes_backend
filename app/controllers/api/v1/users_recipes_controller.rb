@@ -8,7 +8,7 @@ class Api::V1::UsersRecipesController < ApplicationController
   end
 
   def create
-    user = User.find(params["user_id"])
+    user = User.find(recipe_params[:user_id])
     recipe = Recipe.create(recipe_params)
     if recipe.valid?
       render json: recipe, each_serializer: RecipeSerializer, status: :created
@@ -23,7 +23,6 @@ class Api::V1::UsersRecipesController < ApplicationController
   end
 
   def update
-    byebug
     recipe = Recipe.find(params[:id])
     recipe.update(recipe_params)
     render json: recipe, each_serializer: RecipeSerializer

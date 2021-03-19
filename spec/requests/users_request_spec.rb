@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Users", type: :request do
   subject { create :user }
 
-  describe "index" do
+  context "index" do
     before do
       User.destroy_all
       subject
@@ -17,7 +17,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "create" do
+  context "create" do
     it "creates a new user" do
       user = { user: { name: "Beng", age: 20, favourite_mums_dish: "Spaghetti", username: "JG", password: "123" } }
       post "/api/v1/users", params: user.to_json, headers: { 'Accept': "application/json", 'Content-Type': "application/json" }
@@ -27,6 +27,15 @@ RSpec.describe "Users", type: :request do
 
     it "changes the count of User by 1" do
       expect { subject }.to change(User, :count).by(1)
+    end
+  end
+
+  context "show" do
+    it "shows the user" do
+      get("/api/v1/users/#{subject.id}")
+      expect(response).to be_successful
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include(subject.name)
     end
   end
 end
