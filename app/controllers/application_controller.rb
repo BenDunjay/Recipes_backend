@@ -11,7 +11,6 @@ class ApplicationController < ActionController::API
 
   def encode_token(payload, exp = 24.hours.from_now)
     payload[:exp] = exp.to_i
-    byebug
     JWT.encode(payload, @secret)
   end
 
