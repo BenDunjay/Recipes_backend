@@ -1,6 +1,8 @@
 class IngredientsController < ApplicationController
   def index
-    ingredients = Ingredients.where()
+    if params["recipes"]
+      ingredients = recipe_ingredients(ingredients_params)
+    end
   end
 
   def create
