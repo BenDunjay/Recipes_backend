@@ -4,7 +4,6 @@ task :seeding do
   Rake::Task["db:drop"].execute
   Rake::Task["db:create"].execute
   Rake::Task["db:migrate"].execute
-  byebug
   data_amount.times do |i|
     user = User.new(name: "name #{i}", age: "#{i}", favourite_mums_dish: "dish #{i}", username: "person #{i}", password: "123")
     user.recipes.build(name: "recipe #{i}", difficulty: "easy #{i}", cooking_time: "#{i}", instructions: "instructions #{i}")
